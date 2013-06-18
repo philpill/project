@@ -16,6 +16,19 @@
     <script src="js/external/underscore-min.js"></script>
     <script src="js/external/bootstrap.min.js"></script>
     <script src="js/external/backbone-min.js"></script>
-    <script data-main="js/sony" src="js/external/require.js"></script>
+    <script src="js/external/require.js"></script>
+    <script>
+      require.config({
+        baseUrl: "js",
+        paths: {
+
+        },
+        waitSeconds: 15
+      });
+
+      require( ['sony'], function(sony) {
+        sony.init();
+      });
+    </script>
   </body>
 </html>

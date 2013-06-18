@@ -1,4 +1,8 @@
-define({
-    color: "black",
-    size: "unisize"
+define(function(){
+
+	return {
+		init: function() {
+			console.log('sony.init()');
+		}
+	}
 });
