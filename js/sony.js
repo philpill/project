@@ -1,10 +1,10 @@
-define(['marionette', 'router'], function(Marionette, Router){
+define(['marionette', 'router', 'controller'], function(Marionette, Router, Controller){
 
 
     var Sony = new Marionette.Application();
 
 	Sony.addInitializer(function(options){
-		new Router();
+		new Router(Controller);
 		Backbone.history.start();
 	});
 

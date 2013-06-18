@@ -3,18 +3,33 @@ define(['marionette'], function(Marionette){
   router = Marionette.AppRouter.extend({
 
     controller: {
-      someMethod: function(){ /*...*/ }
+      registerUser: function(){
+
+      },
+      signinUser: function() {
+
+      },
+      getProfileById: function() {
+
+      },
+      getTitlesByUser: function() {
+
+      },
+      getTitleByUser: function() {
+
+      },
+      listTitles: function() {
+
+      }
     },
 
     appRoutes: {
-      "some/route": "someMethod"
-    },
-
-    routes : {
-      "some/otherRoute" : "someOtherMethod"
-    },
-    someOtherMethod : function(){
-
+      "register/:username": "registerUser", //PUT
+      "signin/:username/:password": "signinUser", //GET
+      "profile/:userId": "getProfileById", //GET/PUT
+      "profile/:userId/titles": "getTitlesByUser", //GET
+      "profile/:userId/titles/:titleId": "getTitleByUser", //PUT/DELETE
+      "gametitles/list": "listTitles" //GET
     }
 
   });
