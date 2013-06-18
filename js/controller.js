@@ -1,24 +1,15 @@
-define(['marionette'], function(Marionette){
+define(function(require) {
+
 
   var controller = {
 
-    registerUser: function(){
-
-    },
-    signinUser: function() {
-
-    },
-    getProfileById: function() {
-
-    },
-    getTitlesByUser: function() {
-
-    },
-    getTitleByUser: function() {
-
-    },
     listTitles: function() {
+      console.log('listTitles()');
 
+  var Sony = require('sony');
+  var TitlesView = require('views/titles');
+      var titlesView = new TitlesView();
+      Sony.mainRegion.show(titlesView);
     }
   }
 

@@ -1,11 +1,9 @@
 define(['marionette'], function(Marionette){
 
-	var homeView = Marionette.ItemView.extend({
-	  template: "#HomeTemplate",
-	  tagName: 'section',
-	  className: 'home'
+	var HomeView = Marionette.ItemView.extend({
+	  template: "#HomeTemplate"
 	});
 
-	return homeView;
+	return HomeView;
 
 });

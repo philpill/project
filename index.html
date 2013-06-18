@@ -18,6 +18,28 @@
 
     <script type="text/template" id="HomeTemplate">
       <section class="home">
+        <h3>Home</h3>
+        <section class="login">
+          <form class="form-inline">
+            <input name="username" type="text" placeholder="username" />
+            <input name="password" type="password" placeholder="password" />
+            <button type="submit" class="btn">Login</button>
+          </form>
+        </section>
+        <a href="#titles">List Titles</a>
+      </section>
+    </script>
+
+    <script type="text/template" id="TitlesTemplate">
+      <h3>Titles</h3>
+    </script>
+
+    <script type="text/template" id="TitleTemplate">
+      <li></li>
+    </script>
+
+    <script type="text/template" id="HomeTemplate">
+      <section class="home">
       <h3>Home</h3>
         <section class="login">
           <form class="form-inline">
@@ -26,7 +48,7 @@
             <button type="submit" class="btn">Login</button>
           </form>
         </section>
-        <a href="/titles">List Titles</a>
+        <a href="titles">List Titles</a>
       </section>
     </script>
 
