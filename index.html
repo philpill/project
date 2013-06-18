@@ -11,6 +11,25 @@
   <body>
     <h1>Sony Developer Test</h1>
     <h2>Phil Shum 06/13</h2>
+    <section id="Main">
+
+    </section>
+
+
+    <script type="text/template" id="HomeTemplate">
+      <section class="home">
+      <h3>Home</h3>
+        <section class="login">
+          <form class="form-inline">
+            <input name="username" type="text" placeholder="username" />
+            <input name="password" type="password" placeholder="password" />
+            <button type="submit" class="btn">Login</button>
+          </form>
+        </section>
+        <a href="/titles">List Titles</a>
+      </section>
+    </script>
+
     <script src="js/external/require.js"></script>
     <script>
       require.config({

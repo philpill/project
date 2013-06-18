@@ -1,4 +1,4 @@
-define(['marionette', 'router', 'controller'], function(Marionette, Router, Controller){
+define(['marionette', 'router', 'controller', 'views/home'], function(Marionette, Router, Controller, HomeView){
 
 
     var Sony = new Marionette.Application();
@@ -6,6 +6,15 @@ define(['marionette', 'router', 'controller'], function(Marionette, Router, Cont
 	Sony.addInitializer(function(options){
 		new Router(Controller);
 		Backbone.history.start();
+	});
+
+	Sony.addInitializer(function(options){
+		var homeView = new HomeView();
+		Sony.mainRegion.show(homeView);
+	});
+
+	Sony.addRegions({
+		mainRegion: "#Main"
 	});
 
 	console.log(Sony);
