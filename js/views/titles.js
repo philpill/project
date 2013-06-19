@@ -1,12 +1,19 @@
-define(['marionette', 'views/title'], function(Marionette, TitleView){
+define(['marionette', 'views/title', 'collections/title'], function(Marionette, TitleView, TitleCollection){
+
+	var titleCollection = new TitleCollection();
 
 	var TitlesView = Backbone.Marionette.CompositeView.extend({
 		template: "#TitlesTemplate",
-		tagName: 'ul',
+		tagName: 'section',
 		className: 'titles',
 		itemView: TitleView,
-		appendHtml: function(collectionView, itemView){
-			collectionView.append(itemView.el);
+		collection: titleCollection,
+		initialize: function() {
+			this.collection.fetch();
+		},
+		appendHtml: function(collectionView, itemView, index){
+			console.log(itemView.el);
+			collectionView.$("dl").append($(itemView.el).html());
 		}
 	});
 

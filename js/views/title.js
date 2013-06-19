@@ -1,7 +1,7 @@
 define(['marionette'], function(Marionette){
 
 	var TitleView = Marionette.ItemView.extend({
-	  template: "#TitleTemplate"
+		template: '#TitleTemplate'
 	});
 
 	return TitleView;
