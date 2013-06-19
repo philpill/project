@@ -11,7 +11,5 @@ define(['marionette', 'router', 'controller', 'views/home'], function(Marionette
 		mainRegion: "#Main"
 	});
 
-	console.log(Sony);
-
     return Sony;
 });

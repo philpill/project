@@ -41,6 +41,13 @@
 		</section>
 	</script>
 
+	<script type="text/template" id="LoggedinTemplate">
+		<section class="login">
+			<h3>Login</h3>
+			<span class="username">Welcome back, <%=username%>!</span>
+		</section>
+	</script>
+
 	<script type="text/template" id="TitleTemplate">
 	  <dt data-id="<%=id%>"><%=name%></dt>
 	  <dd><%=description%></dd>
@@ -59,34 +66,45 @@
 		  backbone: 'external/backbone-min',
 		  underscore: 'external/underscore-min',
 		  jquery: 'external/jquery-2.0.2.min',
+		  cookie: 'external/jquery.cookie',
 		  json2: 'external/json2',
 		  bootstrap: 'external/bootstrap.min',
 		  marionette: 'external/backbone.marionette.min',
 		  babysitter: 'external/backbone.babysitter',
 		  wreqr: 'external/backbone.wreqr',
+		  sinon: 'external/sinon-1.7.1'
 		},
-		waitSeconds: 15,
+		waitSeconds: 5,
 		shim: {
-		  backbone: {
+			cookie: {
+				deps: ['jquery'],
+			},
+			json2: {
+				exports: 'JSON'
+			},
+			backbone: {
 			  deps: ['underscore', 'jquery', 'json2'],
 			  exports: 'Backbone'
-		  },
-		  underscore: {
+			},
+			underscore: {
 			  exports: '_'
-		  },
-		  bootstrap: {
+			},
+			bootstrap: {
 			deps: ['jquery'],
-		  },
-		  babysitter: {
+			},
+			babysitter: {
 			deps: ['backbone']
-		  },
-		  wreqr: {
+			},
+			wreqr: {
 			deps: ['backbone']
-		  },
-		  marionette: {
-			deps: ['backbone', 'babysitter', 'wreqr'],
-			exports: 'Marionette'
-		  }
+			},
+			marionette: {
+				deps: ['backbone', 'babysitter', 'wreqr'],
+				exports: 'Marionette'
+			},
+			sinon: {
+				exports: 'Sinon'
+			}
 		}
 	  });
 
@@ -95,9 +113,10 @@
 	  }
 
 	  require( ['sony'], function(Sony){
-
 		Sony.start(options);
 	  });
+
+
 	</script>
   </body>
 </html>
