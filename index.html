@@ -11,6 +11,14 @@
   <body>
 	<h1>Sony Developer Test</h1>
 	<h2>Phil Shum 06/13</h2>
+	<nav>
+		<ul class="inline">
+			<li><a href="/#">home</a></li>
+			<li><a href="/#login">login</a></li>
+			<li><a href="/#users">users</a></li>
+			<li><a href="/#titles">titles</a></li>
+		</ul>
+	</nav>
 	<section id="Main">
 
 	</section>
@@ -19,15 +27,18 @@
 	<script type="text/template" id="HomeTemplate">
 	  <section class="home">
 		<h3>Home</h3>
-		<section class="login">
-		  <form class="form-inline">
-			<input name="username" type="text" placeholder="username" />
-			<input name="password" type="password" placeholder="password" />
-			<button type="submit" class="btn">Login</button>
-		  </form>
-		</section>
-		<a href="#titles">List Titles</a>
 	  </section>
+	</script>
+
+	<script type="text/template" id="LoginTemplate">
+		<section class="login">
+			<h3>Login</h3>
+			<form class="form-inline">
+				<input class="username" name="username" type="text" placeholder="username" />
+				<input class="password" name="password" type="password" placeholder="password" />
+				<button type="submit" class="btn">Login</button>
+			</form>
+		</section>
 	</script>
 
 	<script type="text/template" id="TitleTemplate">
@@ -35,24 +46,9 @@
 	  <dd><%=description%></dd>
 	</script>
 
-    <script type="text/template" id="TitlesTemplate">
-    	<h3>Titles</h3>
-    	<dl></dl>
-    	<a href="/">Back</a>
-    </script>
-
-	<script type="text/template" id="HomeTemplate">
-	  <section class="home">
-	  <h3>Home</h3>
-		<section class="login">
-		  <form class="form-inline">
-			<input name="username" type="text" placeholder="username" />
-			<input name="password" type="password" placeholder="password" />
-			<button type="submit" class="btn">Login</button>
-		  </form>
-		</section>
-		<a href="titles">List Titles</a>
-	  </section>
+	<script type="text/template" id="TitlesTemplate">
+		<h3>Titles</h3>
+		<dl></dl>
 	</script>
 
 	<script src="js/external/require.js"></script>

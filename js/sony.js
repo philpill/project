@@ -7,11 +7,6 @@ define(['marionette', 'router', 'controller', 'views/home'], function(Marionette
 		Backbone.history.start();
 	});
 
-	Sony.addInitializer(function(options){
-		var homeView = new HomeView();
-		Sony.mainRegion.show(homeView);
-	});
-
 	Sony.addRegions({
 		mainRegion: "#Main"
 	});

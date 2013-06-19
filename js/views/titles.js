@@ -12,7 +12,6 @@ define(['marionette', 'views/title', 'collections/title'], function(Marionette, 
 			this.collection.fetch();
 		},
 		appendHtml: function(collectionView, itemView, index){
-			console.log(itemView.el);
 			collectionView.$("dl").append($(itemView.el).html());
 		}
 	});
