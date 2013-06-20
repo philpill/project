@@ -5,7 +5,8 @@ define(['marionette'], function(Marionette){
     appRoutes: {
 		'' : 'home',
 		'titles' : 'titles',
-		'login' : 'login'
+		'login' : 'login',
+		'profile' : 'profile'
     }
 
   });

@@ -29,8 +29,9 @@ define([
 			if (this.isSessionValid(userId, sessionId)) {
 				$.when(this.getUser(userId))
 				.then((function(data){
-					console.log(data);
+					console.log(_.clone(data.attributes));
 					this.model = data;
+					$.cookie('user', JSON.stringify(_.clone(data.attributes)));
 				}).bind(this));
 			}
 		},

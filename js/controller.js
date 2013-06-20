@@ -1,6 +1,6 @@
 define(function(require) {
 
-	var Sony, HomeView, TitlesView, LoginView;
+	var Sony, HomeView, TitlesView, LoginView, UserView, UserModel;
 
 	var controller = {
 		home: function() {
@@ -23,6 +23,18 @@ define(function(require) {
 			LoginView = LoginView || require('views/login');
 			var loginView = new LoginView();
 			Sony.mainRegion.show(loginView);
+		},
+		profile: function() {
+			console.log('profile()');
+			Sony = Sony || require('sony');
+			UserView = UserView || require('views/user');
+			UserModel = UserModel || require('models/user');
+			var user = JSON.parse($.cookie('user'));
+			console.log(user);
+			var userModel = new UserModel(user);
+			var userView = new UserView({ model : userModel });
+			console.log(userView);
+			Sony.mainRegion.show(userView);
 		}
 
 	};

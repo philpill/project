@@ -44,14 +44,21 @@
 	<script type="text/template" id="LoggedinTemplate">
 		<section class="login">
 			<h3>Login</h3>
-			<span class="username">Welcome back, <%=username%>!</span>
+			<span class="username">Welcome back, <a href="#profile"><%=username%></a>!</span>
 			<a class="logout" href="#logout">logout</a>
 		</section>
 	</script>
 
 	<script type="text/template" id="TitleTemplate">
-	  <dt data-id="<%=id%>"><%=name%></dt>
-	  <dd><%=description%></dd>
+		<dt data-id="<%=id%>"><%=name%></dt>
+		<dd><%=description%></dd>
+	</script>
+
+	<script type="text/template" id="UserTemplate">
+		<section class="user">
+			<h3>User</h3>
+			<%= username %>
+		</section>
 	</script>
 
 	<script type="text/template" id="TitlesTemplate">
