@@ -13,19 +13,17 @@ define(function(require){
 		events: {
 			'click .delete' : 'deleteTitle'
 		},
+		initialize: function() {
+
+        },
 		deleteTitle: function(e) {
 			console.log('deleteTitle()');
 			e.preventDefault();
 			var $currentTarget = $(e.currentTarget);
 			var titleId = $currentTarget.parents('dt:eq(0)').data('id');
-			console.log(titleId);
-			console.log(this.collection);
-
-			var title = this.collection.get(titleId)
-			console.log(title);
-
+			var title = this.collection.get(titleId);
 			this.collection.remove(title);
-			console.log(this.collection);
+			this.render()
 		},
 		appendHtml: function(collectionView, itemView, index){
 			collectionView.$('dl').append($(itemView.el).html());

@@ -70,6 +70,7 @@ define(function(require) {
 			.then(function(collection){
 				var titlesView = new TitlesView({ collection : collection });
 				Sony.mainRegion.show(titlesView);
+				$('.titles dt').append(' <a href="#" class="delete">delete</a>'); //totally the wrong place for this
 			});
 		}
 

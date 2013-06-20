@@ -49,7 +49,7 @@
 	</script>
 
 	<script type="text/template" id="TitleTemplate">
-		<dt data-id="<%=id%>"><%=name%> <a href="#" class="delete">delete</a></dt>
+		<dt data-id="<%=id%>"><span><%=name%></span></dt>
 		<dd><%=description%></dd>
 	</script>
 
@@ -81,8 +81,10 @@
 	</script>
 
 	<script type="text/template" id="TitlesTemplate">
-		<h3>Titles</h3>
-		<dl></dl>
+		<section class="titles">
+			<h3>Titles</h3>
+			<dl></dl>
+		</section>
 	</script>
 
 	<script src="js/external/require.js"></script>
