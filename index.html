@@ -58,23 +58,23 @@
 			<h3>User</h3>
 			<p><a href="#profile/games">games</a></p>
 			<form>
-				<input type="hidden" value="<%= userId %>" />
+				<input type="hidden" value="<%= typeof(userId) !== 'undefined' ? userId : '' %>" />
 				<label for="username">username</label>
-				<input type="text" name="username" class="" value="<%= username %>" />
+				<input type="text" name="username" class="" value="<%= typeof(username) !== 'undefined' ? username : '' %>" />
 				<label for="firstName">firstName</label>
-				<input type="text" name="firstName" class="" value="<%= firstName %>" />
+				<input type="text" name="firstName" class="" value="<%= typeof(firstName) !== 'undefined' ? firstName : '' %>" />
 				<label for="lastName">lastName</label>
-				<input type="text" name="lastName" class="" value="<%= lastName %>" />
+				<input type="text" name="lastName" class="" value="<%= typeof(lastName) !== 'undefined' ? lastName : '' %>" />
 				<label for="password">password</label>
-				<input type="text" name="password" class="" value="<%= password %>" />
+				<input type="text" name="password" class="" value="<%= typeof(password) !== 'undefined' ? password : '' %>" />
 				<label for="phoneNumber">phoneNumber</label>
-				<input type="text" name="phoneNumber" class="" value="<%= phoneNumber %>" />
+				<input type="text" name="phoneNumber" class="" value="<%= typeof(phoneNumber) !== 'undefined' ? phoneNumber : '' %>" />
 				<label for="age">age</label>
-				<input type="text" name="age" class="" value="<%= age %>" />
+				<input type="text" name="age" class="" value="<%= typeof(age) !== 'undefined' ? age : '' %>" />
 				<label for="genderIsFemale">genderIsFemale</label>
-				<input type="checkbox" name="genderIsFemale" class="" checked="<%= genderIsFemale%>" />
+				<input type="checkbox" name="genderIsFemale" class="" checked="<%= typeof(genderIsFemale) !== 'undefined' ? genderIsFemale : '' %>" />
 				<label for="notes">notes</label>
-				<textarea name="notes" class="" rows="3"><%= notes %></textarea>
+				<textarea name="notes" class="" rows="3"><%= typeof(notes) !== 'undefined' ? notes : '' %></textarea>
 				<button class="btn save">save changes</button>
 			</form>
 		</section>
@@ -84,6 +84,16 @@
 		<section class="titles">
 			<h3>Titles</h3>
 			<dl></dl>
+		</section>
+		<section class="addTitle">
+			<h3>Add Title</h3>
+			<form>
+				<label for="title">Title</label>
+				<input type="text" name="title" class="title" placeholder="Title" />
+				<label for="description">Description</label>
+				<input type="text" name="description" class="description" placeholder="description" />
+				<button class="btn add">Save New Title</button>
+			</form>
 		</section>
 	</script>
 

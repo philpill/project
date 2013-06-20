@@ -49,6 +49,9 @@ define(function(require) {
 			.then(function(collection){
 				var titlesView = new TitlesView({ collection : collection });
 				Sony.mainRegion.show(titlesView);
+
+				//should be in a seperate view
+				$('.addTitle').remove();
 			});
 		},
 		login: function() {
@@ -63,15 +66,34 @@ define(function(require) {
 			var userView = new UserView({ model : getUserModel() });
 			Sony.mainRegion.show(userView);
 		},
+		profileNew: function() {
+			console.log('profileNew()');
+			Sony = Sony || require('sony');
+			var userView = new UserView();
+			Sony.mainRegion.show(userView);
+		},
 		profileGames: function() {
 			console.log('profileGames()');
 			Sony = Sony || require('sony');
-			$.when(getMockCollection(TitleCollection, 'getUserTitlesResponse'))
-			.then(function(collection){
-				var titlesView = new TitlesView({ collection : collection });
-				Sony.mainRegion.show(titlesView);
-				$('.titles dt').append(' <a href="#" class="delete">delete</a>'); //totally the wrong place for this
+
+			var collection = new TitleCollection();
+
+			var user = getUserModel();
+			var url = '/profile/' + user.get('userId') + '/titles/';
+			collection.url = url;
+
+			var server = sinon.fakeServer.create();
+			server.respondWith(Mock.getUserTitlesResponse);
+			collection.fetch({
+				success: function(data) {
+					var titlesView = new TitlesView({ collection : data });
+					Sony.mainRegion.show(titlesView);
+
+					//need subviews for these controls
+					$('.titles dt').append(' <a href="#" class="delete">delete</a>');
+				}
 			});
+			server.respond();
 		}
 
 	};

@@ -83,7 +83,7 @@ define([
 
 			$.when($.ajax({ url: '/signin/' + username + '/' + password }))
 			.then(this.loginSuccess.bind(this))
-			.fail(this.loginFail.bind(this));
+			.fail(this.loginFail);
 
 			server.respond();
 
