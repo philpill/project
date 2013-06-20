@@ -11,7 +11,8 @@ define([
 	var LoginView = Marionette.CompositeView.extend({
 		template: '#LoginTemplate',
 		events: {
-			'click .login button': 'login'
+			'click .login button': 'login',
+			'click .logout': 'logout'
 		},
 		getTemplate: function(){
 			var template = '#LoginTemplate';
@@ -28,6 +29,7 @@ define([
 			if (this.isSessionValid(userId, sessionId)) {
 				$.when(this.getUser(userId))
 				.then((function(data){
+					console.log(data);
 					this.model = data;
 				}).bind(this));
 			}
@@ -55,12 +57,8 @@ define([
 				Mock.profileResponse]);
 
 			$.when($.ajax({ url: '/profile/' + userId }))
-			.then(
-				dfd.resolve
-			)
-			.fail(
-				dfd.reject
-			);
+			.then(dfd.resolve)
+			.fail(dfd.reject);
 
 			server.respond();
 
@@ -111,13 +109,19 @@ define([
 			$.cookie('userId', userId, { expires: expiryDate, path: '/'});
 			$.cookie('sessionId', sessionId, { expires: expiryDate, path: '/'});
 
-			this.render();
+			location.reload();
 		},
 		loginFail: function() {
 			console.log('fail');
 			$.removeCookie('sessionId');
+		},
+		logout: function(e) {
+			e.preventDefault();
 
-			this.render();
+			$.removeCookie('userId');
+			$.removeCookie('sessionId');
+
+			document.location = '/';
 		}
 	});
 
