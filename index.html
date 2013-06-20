@@ -68,11 +68,11 @@
 			<h4>Sign in to access your account</h4>
 			<form>
 				<fieldset>
-					<label for="username">username</label>
+					<label for="username">username (alexw)</label>
 					<input class="username" name="username" type="text" placeholder="username" />
-					<label for="password">password</label>
+					<label for="password">password (0777999666)</label>
 					<input class="password" name="password" type="password" placeholder="password" />
-					<button type="submit" class="btn">Login</button>
+					<button class="btn btn-primary">Login</button>
 				<fieldset>
 			</form>
 		</section>
@@ -93,6 +93,10 @@
 	<script type="text/template" id="UserTemplate">
 		<section class="user">
 			<h3>Profile</h3>
+			<div class="alert alert-success">
+				<strong>Registration successful!</strong> Please check your email for confirmation to login.
+				<button type="button" class="close" data-dismiss="alert">×</button>
+			</div>
 			<form>
 				<fieldset>
 					<input type="hidden" value="<%= typeof(userId) !== 'undefined' ? userId : '' %>" />

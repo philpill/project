@@ -75,6 +75,10 @@ nav a:focus {
 	background: white;
 }
 
+.alert {
+	display: none;
+}
+
 fieldset {
 	padding: 0 10px;
 }

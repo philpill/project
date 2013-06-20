@@ -4,17 +4,8 @@ define(function(require){
 	var UserModel = require('models/user');
 	var Mock = require('mock');
 
+	require('bootstrap');
 	require('sinon');
-
-	function getUserModel(){
-		var user = $.cookie('user');
-		if (!user) {
-			return null;
-		}
-		var userJSON = JSON.parse(user);
-		var userModel = new UserModel(userJSON);
-		return userModel;
-	}
 
 	var RegisterView = Marionette.ItemView.extend({
 		template: '#UserTemplate',
@@ -22,22 +13,22 @@ define(function(require){
 			'click .save' : 'save'
 		},
 		save: function(e) {
-			console.log('save()');
 			e.preventDefault();
 			var data = this.getFormValues();
-			var user = getUserModel();
+			var user = new UserModel();
 			var server = sinon.fakeServer.create();
 			server.respondWith(Mock.profileResponse);
 			$.when(user.save(data))
 			.then(function(){
 				console.log('saved!');
 				//display success
+				$('.alert').show().alert();
+				window.scrollTo(0, 0);
 			});
 			server.respond();
 		},
 		getFormValues: function() {
 			var data = {};
-
 			data.username = this.$el.find('[name=username]').val();
 			data.firstName = this.$el.find('[name=firstName]').val();
 			data.lastName = this.$el.find('[name=lastName]').val();
@@ -46,9 +37,6 @@ define(function(require){
 			data.age = this.$el.find('[name=age]').val();
 			data.genderIsFemale = (this.$el.find('[name=genderIsFemale]').val() === 'on') ? true : false;;
 			data.notes = this.$el.find('[name=notes]').val();
-
-			console.log(data);
-
 			return data;
 		}
 	});

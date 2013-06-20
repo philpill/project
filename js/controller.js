@@ -1,6 +1,6 @@
 define(function(require) {
 
-	var HomeView, TitlesView, LoginView, UserView, UserModel, TitleCollection, Mock, AboutView;
+	var HomeView, TitlesView, LoginView, UserView, UserModel, TitleCollection, Mock, AboutView, RegisterView;
 
 	HomeView = require('views/home');
 	TitlesView = require('views/titles');
@@ -8,6 +8,7 @@ define(function(require) {
 	LoginView = require('views/login');
 	AboutView = require('views/about');
 	TitlesView = require('views/titles');
+	RegisterView = require('views/register');
 	UserView = require('views/user');
 	UserModel = require('models/user');
 	Mock = require('mock');
@@ -84,7 +85,7 @@ define(function(require) {
 			$.removeCookie('userId');
 			$.removeCookie('sessionId');
 			$.removeCookie('user');
-			document.location = '/';
+			document.location = '#';
 		},
 		profile: function() {
 			var userView = new UserView({ model : getUserModel() });
@@ -116,10 +117,8 @@ define(function(require) {
 			server.respond();
 		},
 		register: function() {
-			var userView = new UserView();
-			transitionPage(userView, function(){
-				$('.user p.games').remove();
-			});
+			var registerView = new RegisterView();
+			transitionPage(registerView);
 		},
 		about: function() {
 			var aboutView = new AboutView();
