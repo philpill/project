@@ -84,7 +84,6 @@ define(function(require){
 			this.persistUser(userId);
 		},
 		loginFail: function() {
-			console.log('fail');
 			$.removeCookie('sessionId');
 			$.removeCookie('userId');
 			$.removeCookie('user');

@@ -1,119 +1,71 @@
 body {
-	background: url('../img/px_by_Gre3g.png');
-	overflow-y: scroll;
-}
+  background: url("../img/px_by_Gre3g.png");
+  overflow-y: scroll; }
 
 #Container {
-	background: url('../img/subtle_dots.png') white;
-	box-shadow: 0 0 20px 1px black;
-}
-
-header {
-	background: black;
-	padding: 10px;
-	border-bottom: #666 solid 1px;
-}
-
-h1 {
-
-
-}
-
-h1 a {
-	display: block;
-	background: url('../img/lgoHeaderSony.gif') top left no-repeat;
-	width: 100px;
-	height: 34px;
-	text-indent: -9999px;
-	overflow: hidden;
-}
-
-h3 {
-	font-size: 14px;
-	padding: 10px;
-	margin: 0;
-	line-height: 1em;
-	border-left: solid 1px #ccc;
-	border-bottom: solid 1px #ccc;
-	border-right: solid 1px #ccc;
-	background-image: -webkit-linear-gradient(0deg, #efefef, #ffffff);
-	background-image: linear-gradient(0deg, #efefef, #ffffff);
-	margin-bottom: 15px;
-}
-
-h4 {
-	font-size: 14px;
-	color: #666;
-	margin: 0 0 10px 10px;
-}
-
-nav {
-	background: black;
-	padding-left: 10px;
-}
-
-nav ul.inline > li {
-	padding: 10px 10px 10px 0;
-	text-transform: capitalize;
-}
-
-nav a {
-	color: #fff;
-	font-weight: bold;
-}
-
-nav a:hover,
-nav a:active,
-nav a:focus {
-	color: #fff;
-	text-decoration: underline;
-}
-
-#Main {
-	margin: 10px;
-	padding: 10px;
-	background: white;
-}
-
-.alert {
-	display: none;
-}
-
-fieldset {
-	padding: 0 10px;
-}
-
-button.btn {
-	display: block;
-	margin: 10px 0;
-}
-
-p {
-	padding: 0 10px 10px 10px;
-}
-
-ol {
-	padding: 0 10px 10px 10px;
-}
-
-footer {
-	background: black;
-	color: white;
-	padding: 10px;
-}
-
-footer ul {
-	margin: 0;
-}
-
-footer ul.inline > li {
-	padding: 0;
-}
-
-footer a,
-footer a:hover,
-footer a:active,
-footer a:focus {
-	color: white;
-	text-decoration: none;
-}
+  background: url("../img/subtle_dots.png") white;
+  box-shadow: 0 0 20px 1px black; }
+  #Container header {
+    background: black;
+    padding: 10px;
+    border-bottom: #666 solid 1px; }
+  #Container h1 a {
+    display: block;
+    background: url("../img/lgoHeaderSony.gif") top left no-repeat;
+    width: 100px;
+    height: 34px;
+    text-indent: -9999px;
+    overflow: hidden; }
+  #Container h3 {
+    font-size: 14px;
+    padding: 10px;
+    margin: 0;
+    line-height: 1em;
+    border-left: solid 1px #ccc;
+    border-bottom: solid 1px #ccc;
+    border-right: solid 1px #ccc;
+    background-image: -webkit-linear-gradient(0deg, #efefef, white);
+    background-image: linear-gradient(0deg, #efefef, white);
+    margin-bottom: 15px; }
+  #Container h4 {
+    font-size: 14px;
+    color: #666;
+    margin: 0 0 10px 10px; }
+  #Container nav {
+    background: black;
+    padding-left: 10px; }
+    #Container nav ul.inline > li {
+      padding: 10px 10px 10px 0;
+      text-transform: capitalize; }
+    #Container nav a {
+      color: #fff;
+      font-weight: bold; }
+      #Container nav a:hover, #Container nav a:active, #Container nav a:focus {
+        color: #fff;
+        text-decoration: underline; }
+  #Container #Main {
+    margin: 10px;
+    padding: 10px;
+    background: white; }
+  #Container .alert {
+    display: none; }
+  #Container fieldset {
+    padding: 0 10px; }
+  #Container button.btn {
+    display: block;
+    margin: 10px 0; }
+  #Container p {
+    padding: 0 10px 10px 10px; }
+  #Container ol {
+    padding: 0 10px 10px 10px; }
+  #Container footer {
+    background: black;
+    color: white;
+    padding: 10px; }
+    #Container footer ul {
+      margin: 0; }
+      #Container footer ul.inline > li {
+        padding: 0; }
+    #Container footer a, #Container footer a:hover, #Container footer a:active, #Container footer a:focus {
+      color: white;
+      text-decoration: none; }
