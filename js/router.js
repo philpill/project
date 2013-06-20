@@ -6,7 +6,8 @@ define(['marionette'], function(Marionette){
 		'' : 'home',
 		'titles' : 'titles',
 		'login' : 'login',
-		'profile' : 'profile'
+		'profile' : 'profile',
+		'profile/games' : 'profileGames',
     }
 
   });

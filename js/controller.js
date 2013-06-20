@@ -30,11 +30,16 @@ define(function(require) {
 			UserView = UserView || require('views/user');
 			UserModel = UserModel || require('models/user');
 			var user = JSON.parse($.cookie('user'));
-			console.log(user);
 			var userModel = new UserModel(user);
 			var userView = new UserView({ model : userModel });
-			console.log(userView);
 			Sony.mainRegion.show(userView);
+		},
+		profileGames: function() {
+			console.log('profileGames()');
+			Sony = Sony || require('sony');
+			TitlesView = TitlesView || require('views/titles');
+			var titlesView = new TitlesView();
+			Sony.mainRegion.show(titlesView);
 		}
 
 	};

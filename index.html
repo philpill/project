@@ -57,7 +57,17 @@
 	<script type="text/template" id="UserTemplate">
 		<section class="user">
 			<h3>User</h3>
-			<%= username %>
+			<p><a href="#profile/games">games</a></p>
+			<ul class="unstyled" data-id="<%= userId %>">
+				<li>username: <%= username %></li>
+				<li>firstName: <%= firstName %></li>
+				<li>lastName: <%= lastName %></li>
+				<li>password: <%= password %></li>
+				<li>phoneNumber: <%= phoneNumber %></li>
+				<li>age: <%= age %></li>
+				<li>genderIsFemale: <%= genderIsFemale %></li>
+				<li>notes: <%= notes %></li>
+			</ul>
 		</section>
 	</script>
 
