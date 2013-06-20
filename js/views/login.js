@@ -52,6 +52,8 @@ define(function(require){
 			server.respondWith('GET', '/signin/alexw/0777999666',
 				[200, {'Content-Type': 'application/json'},
 				Mock.signinResponse]);
+			server.respondWith('GET', /\/signin\/^(?!.*alexw).*$\/^(?!.*0777999666).*$/,
+				[403, {'Content-Type': 'application/json'}, '']);
 			$.when($.ajax({ url: '/signin/' + username + '/' + password }))
 			.then(this.loginSuccess.bind(this))
 			.fail(this.loginFail);
@@ -84,6 +86,10 @@ define(function(require){
 		loginFail: function() {
 			console.log('fail');
 			$.removeCookie('sessionId');
+			$.removeCookie('userId');
+			$.removeCookie('user');
+			$('.alert').show().alert();
+			window.scrollTo(0, 0);
 		}
 	});
 
