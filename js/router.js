@@ -8,7 +8,8 @@ define(['marionette'], function(Marionette){
 		'login' : 'login',
 		'profile' : 'profile',
 		'profile/new' : 'profileNew',
-		'profile/games' : 'profileGames'
+		'profile/games' : 'profileGames',
+		'register' : 'register'
     }
 
   });

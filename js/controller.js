@@ -37,99 +37,88 @@ define(function(require) {
 		return userModel;
 	}
 
+	function transitionPage(view, callback) {
+		var Sony = require('sony');
+		var page = $(Sony.mainRegion.el).find(':first-child');
+		if (page.length === 0) {
+			Sony.mainRegion.reset();
+			Sony.mainRegion.show(view);
+			if (typeof(callback) === 'function') { callback(); }
+		} else {
+			view.$el.css('display', 'none');
+			view.$el.css('opacity', '0');
+			page.find('> *').slideUp('fast', function(){
+				Sony.mainRegion.reset();
+				Sony.mainRegion.show(view);
+				view.$el.slideDown(function(){
+					$(this).animate({
+						opacity: 1
+					});
+				});
+				if (typeof(callback) === 'function') { callback(); }
+			});
+		}
+	}
+
 	var controller = {
 		home: function() {
 			console.log('home()');
-			Sony = Sony || require('sony');
-
 			var homeView = new HomeView();
-			Sony.mainRegion.show(homeView);
+			transitionPage(homeView);
 		},
 		titles: function() {
 			console.log('titles()');
-			Sony = Sony || require('sony');
 			$.when(getMockCollection(TitleCollection, 'titlesResponse'))
 			.then(function(collection){
 				var titlesView = new TitlesView({ collection : collection });
-				var page = $(Sony.mainRegion.el).find(':first-child');
-				if (page.length === 0) {
-					Sony.mainRegion.show(titlesView);
-				} else {
-					titlesView.$el.css('display', 'none');
-					titlesView.$el.css('opacity', '0');
-					page.find(':first-child').slideUp('fast', function(){
-						Sony.mainRegion.show(titlesView);
-						titlesView.$el.slideDown(function(){
-							$(this).animate({
-								opacity: 1
-							}, function(){
-								//should be in a seperate view
-								$('.addTitle').remove();
-							});
-						});
-
-					});
-				}
+				transitionPage(titlesView, function() {
+					$('.addTitle').remove();
+				});
 			});
 		},
 		login: function() {
 			console.log('login()');
-			Sony = Sony || require('sony');
 			var loginView = new LoginView({ model : getUserModel() });
-			var page = $(Sony.mainRegion.el).find(':first-child');
-			if (page.length === 0) {
-				Sony.mainRegion.show(loginView);
-			} else {
-				loginView.$el.css('display', 'none');
-				loginView.$el.css('opacity', '0');
-				$(Sony.mainRegion.el).find(':first-child').slideUp('fast', function(){
-					Sony.mainRegion.show(loginView);
-					loginView.$el.slideDown(function(){
-						$(this).animate({
-							opacity: 1
-						});
-					});
-				});
-			}
-
-
+			transitionPage(loginView);
 		},
 		profile: function() {
 			console.log('profile()');
-			Sony = Sony || require('sony');
 			var userView = new UserView({ model : getUserModel() });
-			Sony.mainRegion.show(userView);
+			transitionPage(userView);
 		},
 		profileNew: function() {
 			console.log('profileNew()');
-			Sony = Sony || require('sony');
 			var userView = new UserView();
-			Sony.mainRegion.show(userView);
+			transitionPage(userView);
 		},
 		profileGames: function() {
 			console.log('profileGames()');
 			Sony = Sony || require('sony');
-
 			var collection = new TitleCollection();
-
 			var user = getUserModel();
 			var url = '/profile/' + user.get('userId') + '/titles/';
 			collection.url = url;
-
 			var server = sinon.fakeServer.create();
 			server.respondWith(Mock.getUserTitlesResponse);
 			collection.fetch({
 				success: function(data) {
 					var titlesView = new TitlesView({ collection : data });
 					Sony.mainRegion.show(titlesView);
-
-					//need subviews for these controls
-					$('.titles dt').append(' <a href="#" class="delete">delete</a>');
+					transitionPage(titlesView, function(){
+						//need subviews for these controls
+						$('.titles dt').append(' <a href="#" class="delete">delete</a>');
+					});
 				}
 			});
 			server.respond();
+		},
+		register: function() {
+			console.log('register()');
+			var userView = new UserView();
+			transitionPage(userView, function(){
+				$('.user p.games').remove();
+			});
 		}
-
 	};
 
 	return controller;
