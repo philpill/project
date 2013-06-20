@@ -15,7 +15,6 @@
 		<ul class="inline">
 			<li><a href="/#">home</a></li>
 			<li><a href="/#login">login</a></li>
-			<li><a href="/#users">users</a></li>
 			<li><a href="/#titles">titles</a></li>
 		</ul>
 	</nav>
@@ -58,16 +57,26 @@
 		<section class="user">
 			<h3>User</h3>
 			<p><a href="#profile/games">games</a></p>
-			<ul class="unstyled" data-id="<%= userId %>">
-				<li>username: <%= username %></li>
-				<li>firstName: <%= firstName %></li>
-				<li>lastName: <%= lastName %></li>
-				<li>password: <%= password %></li>
-				<li>phoneNumber: <%= phoneNumber %></li>
-				<li>age: <%= age %></li>
-				<li>genderIsFemale: <%= genderIsFemale %></li>
-				<li>notes: <%= notes %></li>
-			</ul>
+			<form>
+				<input type="hidden" value="<%= userId %>" />
+				<label for="username">username</label>
+				<input type="text" name="username" class="" value="<%= username %>" />
+				<label for="firstName">firstName</label>
+				<input type="text" name="firstName" class="" value="<%= firstName %>" />
+				<label for="lastName">lastName</label>
+				<input type="text" name="lastName" class="" value="<%= lastName %>" />
+				<label for="password">password</label>
+				<input type="text" name="password" class="" value="<%= password %>" />
+				<label for="phoneNumber">phoneNumber</label>
+				<input type="text" name="phoneNumber" class="" value="<%= phoneNumber %>" />
+				<label for="age">age</label>
+				<input type="text" name="age" class="" value="<%= age %>" />
+				<label for="genderIsFemale">genderIsFemale</label>
+				<input type="checkbox" name="genderIsFemale" class="" checked="<%= genderIsFemale%>" />
+				<label for="notes">notes</label>
+				<textarea name="notes" class="" rows="3"><%= notes %></textarea>
+				<button class="btn save">save changes</button>
+			</form>
 		</section>
 	</script>
 
