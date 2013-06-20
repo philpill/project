@@ -38,7 +38,13 @@ h3 {
 	border-right: solid 1px #ccc;
 	background-image: -webkit-linear-gradient(0deg, #efefef, #ffffff);
 	background-image: linear-gradient(0deg, #efefef, #ffffff);
-	margin-bottom: 10px;
+	margin-bottom: 15px;
+}
+
+h4 {
+	font-size: 14px;
+	color: #666;
+	margin: 0 0 10px 10px;
 }
 
 nav {

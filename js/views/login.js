@@ -11,17 +11,7 @@ define([
 	var LoginView = Marionette.CompositeView.extend({
 		template: '#LoginTemplate',
 		events: {
-			'click .login button': 'login',
-			'click .logout': 'logout'
-		},
-		getTemplate: function(){
-			var template = '#LoginTemplate';
-			var sessionId = $.cookie('sessionId');
-			var userId = $.cookie('userId');
-			if (this.isSessionValid(userId, sessionId)) {
-				template = '#LoggedinTemplate';
-			}
-			return template;
+			'click .login button': 'login'
 		},
 		initialize: function() {
 			var sessionId = $.cookie('sessionId');
@@ -73,8 +63,6 @@ define([
 			console.log('username:', username);
 			console.log('password:', password);
 
-			server.restore();
-
 			server = sinon.fakeServer.create();
 
 			server.respondWith('GET', '/signin/alexw/0777999666',
@@ -120,14 +108,6 @@ define([
 		loginFail: function() {
 			console.log('fail');
 			$.removeCookie('sessionId');
-		},
-		logout: function(e) {
-			e.preventDefault();
-
-			$.removeCookie('userId');
-			$.removeCookie('sessionId');
-
-			document.location = '/';
 		}
 	});
 

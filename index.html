@@ -15,16 +15,9 @@
 		<header>
 			<h1><a href="/">Sony Developer Test</a></h1>
 		</header>
-		<nav>
-			<ul class="inline">
-				<li><a href="#">home</a></li>
-				<li><a href="#titles">titles</a></li>
-				<li><a href="#login">login</a></li>
-				<li><a href="#register">register</a></li>
-			</ul>
+		<nav id="Authentication">
 		</nav>
 		<section id="Main">
-
 		</section>
 
 		<footer>
@@ -40,7 +33,31 @@
 	<script type="text/template" id="HomeTemplate">
 	  <section class="home">
 		<h3>Home</h3>
+
+		<h4>Log in / sign up</h4>
+		<p>If you already have a My Sony account, please log in or become a member in just a few clicks.</p>
+
+		<h4>Register your product</h4>
+		<p>Register your Sony products today for exclusive news and offers. We can also help you get more out of your product with easy access to support, user manuals and tutorials.</p>
+
+		<h4>My newsletters</h4>
+		<p>Stay up to date with the latest product info, news and offers that matter to you - Just let us know the areas you are interested in and we'll send you regular updates.</p>
+
 	  </section>
+	</script>
+
+	<script type="text/template" id="AuthenticationTemplate">
+		<ul class="inline">
+			<li><a href="#">home</a></li>
+			<li><a href="#titles">titles</a></li>
+			<% if (typeof(userId) === 'undefined') { %>
+				<li><a href="#login">login</a></li>
+				<li><a href="#register">register</a></li>
+			<% } else { %>
+				<li><a href="#profile"><%=username%></a></li>
+				<li><a href="#logout">logout</a></li>
+			<% } %>
+		</ul>
 	</script>
 
 	<script type="text/template" id="LoginTemplate">
@@ -54,21 +71,13 @@
 		</section>
 	</script>
 
-	<script type="text/template" id="LoggedinTemplate">
-		<section class="login">
-			<h3>Login</h3>
-			<span class="username">Welcome back, <a href="#profile"><%=username%></a>!</span>
-			<a class="logout" href="#logout">logout</a>
-		</section>
-	</script>
-
 	<script type="text/template" id="TitleTemplate">
 		<li data-id="<%=id%>"><a href="#" title="<%=description%>"><%=name%></a></li>
 	</script>
 
 	<script type="text/template" id="UserTemplate">
 		<section class="user">
-			<h3>User</h3>
+			<h3>Profile</h3>
 			<p class="games"><a href="#profile/games">games</a></p>
 			<form>
 				<input type="hidden" value="<%= typeof(userId) !== 'undefined' ? userId : '' %>" />
@@ -97,14 +106,21 @@
 		<h3>Playstation Store Chart</h3>
 		<p>Check out the most popular games downloaded from our online store during April 2013. Anything grab your fancy? Simply hit the link to go straight to that game&apos;s page in the online store.</p>
 		<ol></ol>
+	</script>
+
+	<script type="text/template" id="UserTitlesTemplate">
+		<h3>Games Library</h3>
+		<ol></ol>
 		<section class="addTitle">
-			<h3>Add Title</h3>
 			<form>
-				<label for="title">Title</label>
-				<input type="text" name="title" class="title" placeholder="Title" />
-				<label for="description">Description</label>
-				<input type="text" name="description" class="description" placeholder="description" />
-				<button class="btn add">Save New Title</button>
+				<fieldset>
+					<legend>Add More Games To Your Library</legend>
+					<label for="title">Title</label>
+					<input type="text" name="title" class="title" placeholder="Title" />
+					<label for="description">Description</label>
+					<input type="text" name="description" class="description" placeholder="description" />
+					<button class="btn add">Save New Title</button>
+				</fieldset>
 			</form>
 		</section>
 	</script>

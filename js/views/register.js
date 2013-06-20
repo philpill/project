@@ -8,6 +8,9 @@ define(function(require){
 
 	function getUserModel(){
 		var user = $.cookie('user');
+		if (!user) {
+			return null;
+		}
 		var userJSON = JSON.parse(user);
 		var userModel = new UserModel(userJSON);
 		return userModel;

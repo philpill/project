@@ -1,4 +1,11 @@
-define(['marionette', 'router', 'controller', 'views/home'], function(Marionette, Router, Controller, HomeView){
+define(function(require){
+
+	var Marionette = require('marionette');
+	var Router = require('router');
+	var Controller = require('controller');
+	var HomeView = require('views/home');
+    var UserModel = require('models/user');
+    var AuthenticationView = require('views/authentication');
 
     var Sony = new Marionette.Application();
 
@@ -8,7 +15,25 @@ define(['marionette', 'router', 'controller', 'views/home'], function(Marionette
 	});
 
 	Sony.addRegions({
-		mainRegion: "#Main"
+		mainRegion : '#Main',
+		authenticationRegion : '#Authentication'
+	});
+
+	function getUserModel(){
+		var user = $.cookie('user');
+		if (!user) {
+			return null;
+		}
+		var userJSON = JSON.parse(user);
+		var userModel = new UserModel(userJSON);
+		return userModel;
+	}
+
+	Sony.mainRegion.on('show', function(view){
+		var user = getUserModel();
+		var authenticationView = new AuthenticationView({ model: user });
+		Sony.authenticationRegion.reset();
+		Sony.authenticationRegion.show(authenticationView);
 	});
 
     return Sony;

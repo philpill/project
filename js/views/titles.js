@@ -11,6 +11,9 @@ define(function(require){
 
 	function getUserModel(){
 		var user = $.cookie('user');
+		if (!user) {
+			return null;
+		}
 		var userJSON = JSON.parse(user);
 		var userModel = new UserModel(userJSON);
 		return userModel;
@@ -61,7 +64,7 @@ define(function(require){
 			console.log('deleteTitle()');
 			e.preventDefault();
 			var $currentTarget = $(e.currentTarget);
-			var titleId = $currentTarget.parents('dt:eq(0)').data('id');
+			var titleId = $currentTarget.parents('li:eq(0)').data('id');
 			var title = this.collection.get(titleId);
 			var server = sinon.fakeServer.create();
 			server.respondWith(Mock.deleteUserTitles);
@@ -72,6 +75,7 @@ define(function(require){
 		reRender: function() {
 			this.render();
 			$('.titles li').append(' <a href="#" class="delete">delete</a>'); //totally the wrong place for this
+			this.delegateEvents();
 		},
 		appendHtml: function(collectionView, itemView, index){
 			collectionView.$('ol').append($(itemView.el).html());

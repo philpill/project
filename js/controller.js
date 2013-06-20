@@ -1,6 +1,6 @@
 define(function(require) {
 
-	var Sony, HomeView, TitlesView, LoginView, UserView, UserModel, TitleCollection, Mock;
+	var HomeView, TitlesView, LoginView, UserView, UserModel, TitleCollection, Mock;
 
 	HomeView = require('views/home');
 	TitlesView = require('views/titles');
@@ -12,6 +12,7 @@ define(function(require) {
 	Mock = require('mock');
 
 	require('sinon');
+	require('cookie');
 
 	function getMockCollection(Collection, data) {
 		var dfd = new $.Deferred();
@@ -81,6 +82,13 @@ define(function(require) {
 			var loginView = new LoginView({ model : getUserModel() });
 			transitionPage(loginView);
 		},
+		logout: function() {
+			console.log('logout()');
+			$.removeCookie('userId');
+			$.removeCookie('sessionId');
+			$.removeCookie('user');
+			document.location = '/';
+		},
 		profile: function() {
 			console.log('profile()');
 			var userView = new UserView({ model : getUserModel() });
@@ -93,7 +101,7 @@ define(function(require) {
 		},
 		profileGames: function() {
 			console.log('profileGames()');
-			Sony = Sony || require('sony');
+			var Sony = require('sony');
 			var collection = new TitleCollection();
 			var user = getUserModel();
 			var url = '/profile/' + user.get('userId') + '/titles/';
@@ -102,11 +110,12 @@ define(function(require) {
 			server.respondWith(Mock.getUserTitlesResponse);
 			collection.fetch({
 				success: function(data) {
-					var titlesView = new TitlesView({ collection : data });
+					var titlesView = new TitlesView({ collection : data, template: '#UserTitlesTemplate' });
 					Sony.mainRegion.show(titlesView);
 					transitionPage(titlesView, function(){
 						//need subviews for these controls
-						$('.titles dt').append(' <a href="#" class="delete">delete</a>');
+						$('.titles li').append(' <a href="#" class="delete">delete</a>');
+						titlesView.delegateEvents();
 					});
 				}
 			});
