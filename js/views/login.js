@@ -27,20 +27,12 @@ define([
 			var sessionId = $.cookie('sessionId');
 			var userId = $.cookie('userId');
 			if (this.isSessionValid(userId, sessionId)) {
-				$.when(this.getUser(userId))
-				.then((function(data){
-					console.log(_.clone(data.attributes));
-					this.model = data;
-					$.cookie('user', JSON.stringify(_.clone(data.attributes)));
-				}).bind(this));
+				this.persistUser(userId);
 			}
 		},
 		getUser: function(userId) {
-
 			console.log('getUser()');
-
 			var dfd = new $.Deferred();
-
 			$.when(this.getUserData(userId))
 			.then(function(data){
 				dfd.resolve(new UserModel(data));
@@ -81,6 +73,10 @@ define([
 			console.log('username:', username);
 			console.log('password:', password);
 
+			server.restore();
+
+			server = sinon.fakeServer.create();
+
 			server.respondWith('GET', '/signin/alexw/0777999666',
 				[200, {'Content-Type': 'application/json'},
 				Mock.signinResponse]);
@@ -99,6 +95,13 @@ define([
 
 			return expiryTime;
 		},
+		persistUser: function(userId) {
+			$.when(this.getUser(userId))
+			.then((function(data){
+				this.model = data;
+				$.cookie('user', JSON.stringify(_.clone(data.attributes)));
+			}).bind(this));
+		},
 		loginSuccess: function(data, textStatus, jqXHR) {
 			console.log(data);
 			console.log('success');
@@ -106,6 +109,8 @@ define([
 			var expiryDate = this.getExpiryDate(data.expiryTime);
 			var sessionId = data.sessionId;
 			var userId = data.userId;
+
+			this.persistUser(userId);
 
 			$.cookie('userId', userId, { expires: expiryDate, path: '/'});
 			$.cookie('sessionId', sessionId, { expires: expiryDate, path: '/'});
