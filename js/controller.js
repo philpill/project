@@ -29,6 +29,9 @@ define(function(require) {
 
 	function getUserModel(){
 		var user = $.cookie('user');
+		if (!user) {
+			return null;
+		}
 		var userJSON = JSON.parse(user);
 		var userModel = new UserModel(userJSON);
 		return userModel;
@@ -48,17 +51,48 @@ define(function(require) {
 			$.when(getMockCollection(TitleCollection, 'titlesResponse'))
 			.then(function(collection){
 				var titlesView = new TitlesView({ collection : collection });
-				Sony.mainRegion.show(titlesView);
+				var page = $(Sony.mainRegion.el).find(':first-child');
+				if (page.length === 0) {
+					Sony.mainRegion.show(titlesView);
+				} else {
+					titlesView.$el.css('display', 'none');
+					titlesView.$el.css('opacity', '0');
+					page.find(':first-child').slideUp('fast', function(){
+						Sony.mainRegion.show(titlesView);
+						titlesView.$el.slideDown(function(){
+							$(this).animate({
+								opacity: 1
+							}, function(){
+								//should be in a seperate view
+								$('.addTitle').remove();
+							});
+						});
 
-				//should be in a seperate view
-				$('.addTitle').remove();
+					});
+				}
 			});
 		},
 		login: function() {
 			console.log('login()');
 			Sony = Sony || require('sony');
 			var loginView = new LoginView({ model : getUserModel() });
-			Sony.mainRegion.show(loginView);
+			var page = $(Sony.mainRegion.el).find(':first-child');
+			if (page.length === 0) {
+				Sony.mainRegion.show(loginView);
+			} else {
+				loginView.$el.css('display', 'none');
+				loginView.$el.css('opacity', '0');
+				$(Sony.mainRegion.el).find(':first-child').slideUp('fast', function(){
+					Sony.mainRegion.show(loginView);
+					loginView.$el.slideDown(function(){
+						$(this).animate({
+							opacity: 1
+						});
+					});
+				});
+			}
+
+
 		},
 		profile: function() {
 			console.log('profile()');

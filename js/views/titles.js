@@ -17,7 +17,9 @@ define(function(require){
 	}
 
 	var TitlesView = Marionette.CompositeView.extend({
-		template: "#TitlesTemplate",
+		tagName: 'section',
+		className: 'titles',
+		template: '#TitlesTemplate',
 		itemView: TitleView,
 		events: {
 			'click .delete' : 'deleteTitle',
@@ -69,10 +71,10 @@ define(function(require){
 		},
 		reRender: function() {
 			this.render();
-			$('.titles dt').append(' <a href="#" class="delete">delete</a>'); //totally the wrong place for this
+			$('.titles li').append(' <a href="#" class="delete">delete</a>'); //totally the wrong place for this
 		},
 		appendHtml: function(collectionView, itemView, index){
-			collectionView.$('dl').append($(itemView.el).html());
+			collectionView.$('ol').append($(itemView.el).html());
 		}
 	});
 

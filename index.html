@@ -17,9 +17,10 @@
 		</header>
 		<nav>
 			<ul class="inline">
-				<li><a href="/#">home</a></li>
-				<li><a href="/#login">login</a></li>
-				<li><a href="/#titles">titles</a></li>
+				<li><a href="#">home</a></li>
+				<li><a href="#titles">titles</a></li>
+				<li><a href="#login">login</a></li>
+				<li><a href="#register">register</a></li>
 			</ul>
 		</nav>
 		<section id="Main">
@@ -62,8 +63,7 @@
 	</script>
 
 	<script type="text/template" id="TitleTemplate">
-		<dt data-id="<%=id%>"><span><%=name%></span></dt>
-		<dd><%=description%></dd>
+		<li data-id="<%=id%>"><a href="#" title="<%=description%>"><%=name%></a></li>
 	</script>
 
 	<script type="text/template" id="UserTemplate">
@@ -94,10 +94,9 @@
 	</script>
 
 	<script type="text/template" id="TitlesTemplate">
-		<section class="titles">
-			<h3>Titles</h3>
-			<dl></dl>
-		</section>
+		<h3>Playstation Store Chart</h3>
+		<p>Check out the most popular games downloaded from our online store during April 2013. Anything grab your fancy? Simply hit the link to go straight to that game&apos;s page in the online store.</p>
+		<ol></ol>
 		<section class="addTitle">
 			<h3>Add Title</h3>
 			<form>
