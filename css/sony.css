@@ -75,6 +75,15 @@ nav a:focus {
 	background: white;
 }
 
+fieldset {
+	padding: 0 10px;
+}
+
+button.btn {
+	display: block;
+	margin: 10px 0;
+}
+
 p {
 	padding: 0 10px 10px 10px;
 }

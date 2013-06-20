@@ -10,7 +10,8 @@ define(['marionette'], function(Marionette){
 		'profile/new' : 'profileNew',
 		'profile/games' : 'profileGames',
 		'register' : 'register',
-		'logout' : 'logout'
+		'logout' : 'logout',
+		'about' : 'about'
     }
 
   });

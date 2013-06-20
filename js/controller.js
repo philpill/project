@@ -1,11 +1,12 @@
 define(function(require) {
 
-	var HomeView, TitlesView, LoginView, UserView, UserModel, TitleCollection, Mock;
+	var HomeView, TitlesView, LoginView, UserView, UserModel, TitleCollection, Mock, AboutView;
 
 	HomeView = require('views/home');
 	TitlesView = require('views/titles');
 	TitleCollection = require('collections/title');
 	LoginView = require('views/login');
+	AboutView = require('views/about');
 	TitlesView = require('views/titles');
 	UserView = require('views/user');
 	UserModel = require('models/user');
@@ -63,12 +64,10 @@ define(function(require) {
 
 	var controller = {
 		home: function() {
-			console.log('home()');
 			var homeView = new HomeView();
 			transitionPage(homeView);
 		},
 		titles: function() {
-			console.log('titles()');
 			$.when(getMockCollection(TitleCollection, 'titlesResponse'))
 			.then(function(collection){
 				var titlesView = new TitlesView({ collection : collection });
@@ -78,29 +77,24 @@ define(function(require) {
 			});
 		},
 		login: function() {
-			console.log('login()');
 			var loginView = new LoginView({ model : getUserModel() });
 			transitionPage(loginView);
 		},
 		logout: function() {
-			console.log('logout()');
 			$.removeCookie('userId');
 			$.removeCookie('sessionId');
 			$.removeCookie('user');
 			document.location = '/';
 		},
 		profile: function() {
-			console.log('profile()');
 			var userView = new UserView({ model : getUserModel() });
 			transitionPage(userView);
 		},
 		profileNew: function() {
-			console.log('profileNew()');
 			var userView = new UserView();
 			transitionPage(userView);
 		},
 		profileGames: function() {
-			console.log('profileGames()');
 			var Sony = require('sony');
 			var collection = new TitleCollection();
 			var user = getUserModel();
@@ -122,11 +116,14 @@ define(function(require) {
 			server.respond();
 		},
 		register: function() {
-			console.log('register()');
 			var userView = new UserView();
 			transitionPage(userView, function(){
 				$('.user p.games').remove();
 			});
+		},
+		about: function() {
+			var aboutView = new AboutView();
+			transitionPage(aboutView);
 		}
 	};
 

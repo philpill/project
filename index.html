@@ -41,7 +41,7 @@
 		<p>Register your Sony products today for exclusive news and offers. We can also help you get more out of your product with easy access to support, user manuals and tutorials.</p>
 
 		<h4>My newsletters</h4>
-		<p>Stay up to date with the latest product info, news and offers that matter to you - Just let us know the areas you are interested in and we'll send you regular updates.</p>
+		<p>Stay up to date with the latest product info, news and offers that matter to you - Just let us know the areas you are interested in and we&apos;ll send you regular updates.</p>
 
 	  </section>
 	</script>
@@ -50,10 +50,12 @@
 		<ul class="inline">
 			<li><a href="#">home</a></li>
 			<li><a href="#titles">titles</a></li>
+			<li><a href="#about">about</a></li>
 			<% if (typeof(userId) === 'undefined') { %>
 				<li><a href="#login">login</a></li>
 				<li><a href="#register">register</a></li>
 			<% } else { %>
+				<li><a href="#profile/games">your games</a></li>
 				<li><a href="#profile"><%=username%></a></li>
 				<li><a href="#logout">logout</a></li>
 			<% } %>
@@ -63,10 +65,15 @@
 	<script type="text/template" id="LoginTemplate">
 		<section class="login">
 			<h3>Login</h3>
-			<form class="form-inline">
-				<input class="username" name="username" type="text" placeholder="username" />
-				<input class="password" name="password" type="password" placeholder="password" />
-				<button type="submit" class="btn">Login</button>
+			<h4>Sign in to access your account</h4>
+			<form>
+				<fieldset>
+					<label for="username">username</label>
+					<input class="username" name="username" type="text" placeholder="username" />
+					<label for="password">password</label>
+					<input class="password" name="password" type="password" placeholder="password" />
+					<button type="submit" class="btn">Login</button>
+				<fieldset>
 			</form>
 		</section>
 	</script>
@@ -75,29 +82,40 @@
 		<li data-id="<%=id%>"><a href="#" title="<%=description%>"><%=name%></a></li>
 	</script>
 
+	<script type="text/template" id="AboutTemplate">
+		<h3>About</h3>
+		<p>Project source available at <a href="https://github.com/philpill/project">Github</a></p>
+		<p>Project available to view online at: <a href="http://industrialnation.co.uk/sony/">http://industrialnation.co.uk/sony/</a></p>
+		<p>Technologies incorporated: <a href="http://backbonejs.org/">Backbone</a>, <a href="http://marionettejs.com/">Marionette</a>, <a href="http://requirejs.org/">Require</a>, <a href="http://twitter.github.io/bootstrap/">Twitter Bootstrap</a>, <a href="http://sinonjs.org/">Sinon</a>, <a href="http://sass-lang.com/">SASS</a></p>
+		<p>Question/Comments: contact@philshum.co.uk</p>
+	</script>
+
 	<script type="text/template" id="UserTemplate">
 		<section class="user">
 			<h3>Profile</h3>
-			<p class="games"><a href="#profile/games">games</a></p>
 			<form>
-				<input type="hidden" value="<%= typeof(userId) !== 'undefined' ? userId : '' %>" />
-				<label for="username">username</label>
-				<input type="text" name="username" class="" value="<%= typeof(username) !== 'undefined' ? username : '' %>" />
-				<label for="firstName">firstName</label>
-				<input type="text" name="firstName" class="" value="<%= typeof(firstName) !== 'undefined' ? firstName : '' %>" />
-				<label for="lastName">lastName</label>
-				<input type="text" name="lastName" class="" value="<%= typeof(lastName) !== 'undefined' ? lastName : '' %>" />
-				<label for="password">password</label>
-				<input type="text" name="password" class="" value="<%= typeof(password) !== 'undefined' ? password : '' %>" />
-				<label for="phoneNumber">phoneNumber</label>
-				<input type="text" name="phoneNumber" class="" value="<%= typeof(phoneNumber) !== 'undefined' ? phoneNumber : '' %>" />
-				<label for="age">age</label>
-				<input type="text" name="age" class="" value="<%= typeof(age) !== 'undefined' ? age : '' %>" />
-				<label for="genderIsFemale">genderIsFemale</label>
-				<input type="checkbox" name="genderIsFemale" class="" checked="<%= typeof(genderIsFemale) !== 'undefined' ? genderIsFemale : '' %>" />
-				<label for="notes">notes</label>
-				<textarea name="notes" class="" rows="3"><%= typeof(notes) !== 'undefined' ? notes : '' %></textarea>
-				<button class="btn save">save changes</button>
+				<fieldset>
+					<input type="hidden" value="<%= typeof(userId) !== 'undefined' ? userId : '' %>" />
+					<label for="username">Username</label>
+					<input type="text" name="username" class="input-medium" value="<%= typeof(username) !== 'undefined' ? username : '' %>" required />
+					<label for="password">Password</label>
+					<input type="text" name="password" class="input-medium" value="<%= typeof(password) !== 'undefined' ? password : '' %>" required />
+					<label for="firstName">First Name</label>
+					<input type="text" name="firstName" class="input-medium" value="<%= typeof(firstName) !== 'undefined' ? firstName : '' %>" />
+					<label for="lastName">Last Name</label>
+					<input type="text" name="lastName" class="input-medium" value="<%= typeof(lastName) !== 'undefined' ? lastName : '' %>" />
+					<label for="phoneNumber">Phone Number</label>
+					<input type="text" name="phoneNumber" class="input-medium" value="<%= typeof(phoneNumber) !== 'undefined' ? phoneNumber : '' %>" />
+					<label for="age">Age</label>
+					<input type="number" name="age" class="input-mini" value="<%= typeof(age) !== 'undefined' ? age : '' %>" />
+					<label for="genderIsFemale" class="checkbox">
+						<input type="checkbox" name="genderIsFemale" class="" checked="<%= typeof(genderIsFemale) !== 'undefined' ? genderIsFemale : '' %>" />
+						Female
+					</label>
+					<label for="notes">Notes</label>
+					<textarea name="notes" class="" rows="3"><%= typeof(notes) !== 'undefined' ? notes : '' %></textarea>
+					<button class="btn save">save changes</button>
+				</fieldset>
 			</form>
 		</section>
 	</script>
