@@ -13,25 +13,19 @@ define(function(require){
 
 	var titleCollection = new TitleCollection();
 
-			server.respondWith("GET", "/gametitles/list",
-				[200, {"Content-Type": "application/json"},
-				Mock.titlesResponse]);
+	server.respondWith("GET", "/gametitles/list",
+		[200, {"Content-Type": "application/json"},
+		Mock.titlesResponse]);
 	titleCollection.fetch();
 
 	server.respond();
 
-
-	var TitlesView = Backbone.Marionette.CollectionView.extend({
+	var TitlesView = Backbone.Marionette.CompositeView.extend({
 		template: "#TitlesTemplate",
-		tagName: 'section',
-		className: 'titles',
 		itemView: TitleView,
 		collection: titleCollection,
 		appendHtml: function(collectionView, itemView, index){
-			console.log('appendHtml()');
-			console.log(itemView);
-			console.log($(itemView.el));
-			collectionView.$("dl").append($(itemView.el).html());
+			collectionView.$('dl').append($(itemView.el).html());
 		}
 	});
 
