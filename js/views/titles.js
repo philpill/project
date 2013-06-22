@@ -27,25 +27,16 @@ define(function(require){
 			'click .add' : 'addTitle'
 		},
 		addTitle: function(e) {
-			console.log('addTitle()');
 			e.preventDefault();
-
 			var title = this.$el.find('.title').val();
 			var description = this.$el.find('.description').val();
-
-			console.log(title);
-			console.log(description);
-
 			var titleModel = new TitleModel({
 				name: title,
 				description: description,
 				id: Math.random()
 			});
-
 			var user = getUserModel();
-
 			titleModel.url = '/profile/' + user.get('userId') + '/titles/';
-
 			$.when(titleModel.save())
 			.then((function(data){
 				this.collection.add(titleModel);
@@ -56,7 +47,6 @@ define(function(require){
 			mock.respond();
         },
 		deleteTitle: function(e) {
-			console.log('deleteTitle()');
 			e.preventDefault();
 			var $currentTarget = $(e.currentTarget);
 			var titleId = $currentTarget.parents('li:eq(0)').data('id');

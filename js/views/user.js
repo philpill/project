@@ -20,7 +20,6 @@ define(function(require){
 			'click .save' : 'save'
 		},
 		save: function(e) {
-			console.log('save()');
 			e.preventDefault();
 			var data = this.getFormValues();
 			var user = getUserModel();

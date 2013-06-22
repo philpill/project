@@ -4,7 +4,6 @@ define(['backbone', 'models/title'], function(Backbone, TitleModel){
 		model: TitleModel,
 		url: '/gametitles/list',
 		parse: function(response) {
-			//console.log(response.titles);
 			return response.titles;
 		}
 	});
