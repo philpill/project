@@ -46,6 +46,7 @@ define(function(require) {
 		if (page.length === 0) {
 			Sony.mainRegion.reset();
 			Sony.mainRegion.show(view);
+			view.delegateEvents();
 			if (typeof(callback) === 'function') { callback(); }
 		} else {
 			view.$el.css('display', 'none');
@@ -53,6 +54,7 @@ define(function(require) {
 			page.find('> *').slideUp('fast', function(){
 				Sony.mainRegion.reset();
 				Sony.mainRegion.show(view);
+				view.delegateEvents();
 				view.$el.slideDown(function(){
 					$(this).animate({
 						opacity: 1
