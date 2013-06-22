@@ -1,11 +1,10 @@
 define(function(require){
 
 		var Marionette = require('marionette');
-		var Mock = require('mock');
+		var mock = require('mock');
 		var UserModel = require('models/user');
 
 		require('cookie');
-		require('sinon');
 
 	var LoginView = Marionette.CompositeView.extend({
 		template: '#LoginTemplate',
@@ -14,7 +13,6 @@ define(function(require){
 		},
 		server: null,
 		initialize: function() {
-			this.server = sinon.fakeServer.create();
 			var sessionId = $.cookie('sessionId');
 			var userId = $.cookie('userId');
 			if (this.isSessionValid(userId, sessionId)) {
@@ -31,13 +29,10 @@ define(function(require){
 		},
 		getUserData: function(userId) {
 			var dfd = new $.Deferred();
-			this.server.respondWith('GET', '/profile/c778e312-b18a-4436-8757-2f46f84c8243',
-				[200, {'Content-Type': 'application/json'},
-				Mock.profileResponse]);
 			$.when($.ajax({ url: '/profile/' + userId }))
 			.then(dfd.resolve)
 			.fail(dfd.reject);
-			this.server.respond();
+			mock.respond();
 			return dfd;
 		},
 		isSessionValid: function(userId, sessionId) {
@@ -48,17 +43,10 @@ define(function(require){
 			e.preventDefault();
 			var username = this.$el.find('.username').val();
 			var password = this.$el.find('.password').val();
-			//this.server = sinon.fakeServer.create();
-			this.server.respondWith('GET', '/signin/alexw/0777999666',
-				[200, {'Content-Type': 'application/json'},
-				Mock.signinResponse]);
-			this.server.respondWith('GET', /^\/signin\/(alexw\/0777999666)$/,
-				[403, {'Content-Type': 'application/json'}, '']);
 			$.when($.ajax({ url: '/signin/' + username + '/' + password }))
 			.then(this.loginSuccess.bind(this))
 			.fail(this.loginFail);
-			this.server.respond();
-
+			mock.respond();
 		},
 		getExpiryDate: function(timestamp) {
 			var expiryTime = timestamp; //mock data is already expired

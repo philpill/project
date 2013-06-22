@@ -5,9 +5,7 @@ define(function(require){
 	var TitleModel = require('models/title');
 	var UserModel = require('models/user');
 	var TitleCollection = require('collections/title');
-	var Mock = require('mock');
-
-	require('sinon');
+	var mock = require('mock');
 
 	function getUserModel(){
 		var user = $.cookie('user');
@@ -47,18 +45,15 @@ define(function(require){
 			var user = getUserModel();
 
 			titleModel.url = '/profile/' + user.get('userId') + '/titles/';
-			var server = sinon.fakeServer.create();
-			server.respondWith(Mock.putUserTitles);
 
 			$.when(titleModel.save())
 			.then((function(data){
 				this.collection.add(titleModel);
-
 			}).bind(this))
 			.then((function(){
 				this.reRender();
 			}).bind(this));
-			server.respond();
+			mock.respond();
         },
 		deleteTitle: function(e) {
 			console.log('deleteTitle()');
@@ -66,10 +61,8 @@ define(function(require){
 			var $currentTarget = $(e.currentTarget);
 			var titleId = $currentTarget.parents('li:eq(0)').data('id');
 			var title = this.collection.get(titleId);
-			var server = sinon.fakeServer.create();
-			server.respondWith(Mock.deleteUserTitles);
 			title.destroy();
-			server.respond();
+			mock.respond();
 			this.reRender();
 		},
 		reRender: function() {

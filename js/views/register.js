@@ -2,10 +2,9 @@ define(function(require){
 
 	var Marionette = require('marionette');
 	var UserModel = require('models/user');
-	var Mock = require('mock');
+	var mock = require('mock');
 
 	require('bootstrap');
-	require('sinon');
 
 	var RegisterView = Marionette.ItemView.extend({
 		template: '#UserTemplate',
@@ -16,16 +15,12 @@ define(function(require){
 			e.preventDefault();
 			var data = this.getFormValues();
 			var user = new UserModel();
-			var server = sinon.fakeServer.create();
-			server.respondWith(Mock.profileResponse);
 			$.when(user.save(data))
-			.then(function(){
-				console.log('saved!');
-				//display success
-				$('.alert').show().alert();
+			.then(function(data){
+				$('.alert.create').show().alert();
 				window.scrollTo(0, 0);
 			});
-			server.respond();
+			mock.respond();
 		},
 		getFormValues: function() {
 			var data = {};
@@ -35,7 +30,7 @@ define(function(require){
 			data.password = this.$el.find('[name=password]').val();
 			data.phoneNumber = this.$el.find('[name=phoneNumber]').val();
 			data.age = this.$el.find('[name=age]').val();
-			data.genderIsFemale = (this.$el.find('[name=genderIsFemale]').val() === 'on') ? true : false;;
+			data.genderIsFemale = (this.$el.find('[name=genderIsFemale]').val() === 'on') ? true : false;
 			data.notes = this.$el.find('[name=notes]').val();
 			return data;
 		}

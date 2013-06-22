@@ -11,24 +11,9 @@ define(function(require) {
 	RegisterView = require('views/register');
 	UserView = require('views/user');
 	UserModel = require('models/user');
-	Mock = require('mock');
+	mock = require('mock');
 
-	require('sinon');
 	require('cookie');
-
-	function getMockCollection(Collection, data) {
-		var dfd = new $.Deferred();
-		var collection = new Collection();
-		var server = sinon.fakeServer.create();
-		server.respondWith(Mock[data]);
-		collection.fetch({
-			success: function(data) {
-				dfd.resolve(data);
-			}
-		});
-		server.respond();
-		return dfd;
-	}
 
 	function getUserModel(){
 		var user = $.cookie('user');
@@ -71,13 +56,16 @@ define(function(require) {
 			transitionPage(homeView);
 		},
 		titles: function() {
-			$.when(getMockCollection(TitleCollection, 'titlesResponse'))
-			.then(function(collection){
-				var titlesView = new TitlesView({ collection : collection });
-				transitionPage(titlesView, function() {
-					$('.addTitle').remove();
-				});
+			var collection = new TitleCollection();
+			collection.fetch({
+				success: function(data) {
+					var titlesView = new TitlesView({ collection : data });
+					transitionPage(titlesView, function() {
+						$('.addTitle').remove();
+					});
+				}
 			});
+			mock.respond();
 		},
 		login: function() {
 			var loginView = new LoginView({ model : getUserModel() });
@@ -103,8 +91,6 @@ define(function(require) {
 			var user = getUserModel();
 			var url = '/profile/' + user.get('userId') + '/titles/';
 			collection.url = url;
-			var server = sinon.fakeServer.create();
-			server.respondWith(Mock.getUserTitlesResponse);
 			collection.fetch({
 				success: function(data) {
 					var titlesView = new TitlesView({ collection : data, template: '#UserTitlesTemplate' });
@@ -116,7 +102,7 @@ define(function(require) {
 					});
 				}
 			});
-			server.respond();
+			mock.respond();
 		},
 		register: function() {
 			var registerView = new RegisterView();
