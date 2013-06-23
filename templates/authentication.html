@@ -1,0 +1,15 @@
+<script type="text/template" id="AuthenticationTemplate">
+	<ul class="inline">
+		<li><a href="#">home</a></li>
+		<li><a href="#titles">titles</a></li>
+		<li><a href="#about">about</a></li>
+		<% if (typeof(userId) === 'undefined') { %>
+			<li><a href="#login">login</a></li>
+			<li><a href="#register">register</a></li>
+		<% } else { %>
+			<li><a href="#profile/games">your games</a></li>
+			<li><a href="#profile"><%=username%></a></li>
+			<li><a href="#logout">logout</a></li>
+		<% } %>
+	</ul>
+</script>

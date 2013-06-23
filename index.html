@@ -19,7 +19,7 @@
 			<section id="Main"></section>
 
 			<footer>
-			<span><small>Sony Developer Test: Phil Shum 06/13</small></span>
+				<span><small>Sony Developer Test: Phil Shum 06/13</small></span>
 				<ul class="inline">
 					<li><small><a href="mailto:contact@philshum.co.uk">contact@philshum.co.uk</a></small></li>
 					<li><small><a href="http://philshum.co.uk">philshum.co.uk</a></small></li>
@@ -28,144 +28,10 @@
 			</footer>
 		</div>
 
-		<script type="text/template" id="HomeTemplate">
-		  <section class="home">
-			<h3>Home</h3>
-
-			<h4>Log in / sign up</h4>
-			<p>If you already have a My Sony account, please log in or become a member in just a few clicks.</p>
-
-			<h4>Register your product</h4>
-			<p>Register your Sony products today for exclusive news and offers. We can also help you get more out of your product with easy access to support, user manuals and tutorials.</p>
-
-			<h4>My newsletters</h4>
-			<p>Stay up to date with the latest product info, news and offers that matter to you - Just let us know the areas you are interested in and we&apos;ll send you regular updates.</p>
-
-		  </section>
-		</script>
-
-		<script type="text/template" id="AuthenticationTemplate">
-			<ul class="inline">
-				<li><a href="#">home</a></li>
-				<li><a href="#titles">titles</a></li>
-				<li><a href="#about">about</a></li>
-				<% if (typeof(userId) === 'undefined') { %>
-					<li><a href="#login">login</a></li>
-					<li><a href="#register">register</a></li>
-				<% } else { %>
-					<li><a href="#profile/games">your games</a></li>
-					<li><a href="#profile"><%=username%></a></li>
-					<li><a href="#logout">logout</a></li>
-				<% } %>
-			</ul>
-		</script>
-
-		<script type="text/template" id="LoginTemplate">
-			<section class="login">
-				<h3>Login</h3>
-				<h4>Sign in to access your account</h4>
-				<div class="alert alert-error">
-					<strong>Login error!</strong>
-					<button type="button" class="close" data-dismiss="alert">×</button>
-				</div>
-				<form>
-					<fieldset>
-						<label for="username">username (alexw)</label>
-						<input class="username" name="username" type="text" placeholder="username" required />
-						<label for="password">password (0777999666)</label>
-						<input class="password" name="password" type="password" placeholder="password" required />
-						<button class="btn">Login</button>
-					<fieldset>
-				</form>
-			</section>
-		</script>
-
-		<script type="text/template" id="TitleTemplate">
-			<li data-id="<%=id%>"><a href="#" title="<%=description%>"><%=name%></a></li>
-		</script>
-
-		<script type="text/template" id="AboutTemplate">
-			<h3>About</h3>
-			<p>Project source available at <a href="https://github.com/philpill/project">Github</a></p>
-			<p>Project available to view online at: <a href="http://industrialnation.co.uk/sony/">http://industrialnation.co.uk/sony/</a></p>
-			<p>Technologies incorporated: <a href="http://backbonejs.org/">Backbone</a>, <a href="http://marionettejs.com/">Marionette</a>, <a href="http://requirejs.org/">Require</a>, <a href="http://twitter.github.io/bootstrap/">Twitter Bootstrap</a>, <a href="http://sinonjs.org/">Sinon</a>, <a href="http://sass-lang.com/">SASS</a></p>
-			<p>Developed using: <a href="https://code.google.com/p/mongoose/">Mongoose web server</a>, Sublime Text 2, Git</p>
-			<p>Tested on: Firefox 21, Chrome 27</p>
-
-			<p>Note: Javascript optimized using <a href="http://requirejs.org/docs/optimization.html">r.js</a>. To run optimizer: <code>node external/r.js -o build.js</code></p>
-
-			<p>Question/Comments: contact@philshum.co.uk</p>
-		</script>
-
-		<script type="text/template" id="UserTemplate">
-			<section class="user">
-				<h3>Profile</h3>
-				<div class="alert alert-success create">
-					<strong>Registration successful!</strong> Please check your email for confirmation to login.
-					<button type="button" class="close" data-dismiss="alert">×</button>
-				</div>
-				<div class="alert alert-success update">
-					<strong>Details updated!</strong>
-					<button type="button" class="close" data-dismiss="alert">×</button>
-				</div>
-				<form>
-					<fieldset>
-						<input type="hidden" value="<%= typeof(userId) !== 'undefined' ? userId : '' %>" />
-						<label for="username">Username</label>
-						<input type="text" name="username" class="input-medium" value="<%= typeof(username) !== 'undefined' ? username : '' %>" required />
-						<label for="password">Password</label>
-						<input type="text" name="password" class="input-medium" value="<%= typeof(password) !== 'undefined' ? password : '' %>" required />
-						<label for="firstName">First Name</label>
-						<input type="text" name="firstName" class="input-medium" value="<%= typeof(firstName) !== 'undefined' ? firstName : '' %>" />
-						<label for="lastName">Last Name</label>
-						<input type="text" name="lastName" class="input-medium" value="<%= typeof(lastName) !== 'undefined' ? lastName : '' %>" />
-						<label for="phoneNumber">Phone Number</label>
-						<input type="text" name="phoneNumber" class="input-medium" value="<%= typeof(phoneNumber) !== 'undefined' ? phoneNumber : '' %>" />
-						<label for="age">Age</label>
-						<input type="number" name="age" class="input-mini" value="<%= typeof(age) !== 'undefined' ? age : '' %>" />
-						<label for="genderIsFemale" class="checkbox">
-							<input type="checkbox" name="genderIsFemale" class="" checked="<%= typeof(genderIsFemale) !== 'undefined' ? genderIsFemale : '' %>" />
-							Female
-						</label>
-						<label for="notes">Notes</label>
-						<textarea name="notes" class="" rows="3"><%= typeof(notes) !== 'undefined' ? notes : '' %></textarea>
-						<button class="btn save">save changes</button>
-					</fieldset>
-				</form>
-			</section>
-		</script>
-
-		<script type="text/template" id="TitlesTemplate">
-			<h3>Playstation Store Chart</h3>
-			<p>Check out the most popular games downloaded from our online store during April 2013. Anything grab your fancy? Simply hit the link to go straight to that game&apos;s page in the online store.</p>
-			<ol></ol>
-		</script>
-
-		<script type="text/template" id="UserTitlesTemplate">
-			<h3>Games Library</h3>
-			<ol></ol>
-			<section class="addTitle">
-				<form>
-					<fieldset>
-						<legend>Add More Games To Your Library</legend>
-						<label for="title">Title</label>
-						<input type="text" name="title" class="title" placeholder="Title" />
-						<label for="description">Description</label>
-						<input type="text" name="description" class="description" placeholder="description" />
-						<button class="btn add">Save New Title</button>
-					</fieldset>
-				</form>
-			</section>
-		</script>
-
 		<script src="js/external/require.js"></script>
-
 		<script>
-
 			var runOptimised = true;
-
 			require(runOptimised?['js/main-built']:['js/main']);
-
 		</script>
 	</body>
 </html>

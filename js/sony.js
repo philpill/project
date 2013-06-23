@@ -1,6 +1,7 @@
 define(function(require){
 
 	var Marionette = require('marionette');
+	var Template = require('template');
 	var Router = require('router');
 	var Controller = require('controller');
 	var HomeView = require('views/home');
@@ -8,6 +9,10 @@ define(function(require){
     var AuthenticationView = require('views/authentication');
 
     var Sony = new Marionette.Application();
+
+	Sony.addInitializer(function(){
+		Template.load();
+	});
 
 	Sony.addInitializer(function(options){
 		new Router({ controller: Controller });

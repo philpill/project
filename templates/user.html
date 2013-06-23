@@ -1,0 +1,37 @@
+<script type="text/template" id="UserTemplate">
+	<section class="user">
+		<h3>Profile</h3>
+		<div class="alert alert-success create">
+			<strong>Registration successful!</strong> Please check your email for confirmation to login.
+			<button type="button" class="close" data-dismiss="alert">×</button>
+		</div>
+		<div class="alert alert-success update">
+			<strong>Details updated!</strong>
+			<button type="button" class="close" data-dismiss="alert">×</button>
+		</div>
+		<form>
+			<fieldset>
+				<input type="hidden" value="<%= typeof(userId) !== 'undefined' ? userId : '' %>" />
+				<label for="username">Username</label>
+				<input type="text" name="username" class="input-medium" value="<%= typeof(username) !== 'undefined' ? username : '' %>" required />
+				<label for="password">Password</label>
+				<input type="text" name="password" class="input-medium" value="<%= typeof(password) !== 'undefined' ? password : '' %>" required />
+				<label for="firstName">First Name</label>
+				<input type="text" name="firstName" class="input-medium" value="<%= typeof(firstName) !== 'undefined' ? firstName : '' %>" />
+				<label for="lastName">Last Name</label>
+				<input type="text" name="lastName" class="input-medium" value="<%= typeof(lastName) !== 'undefined' ? lastName : '' %>" />
+				<label for="phoneNumber">Phone Number</label>
+				<input type="text" name="phoneNumber" class="input-medium" value="<%= typeof(phoneNumber) !== 'undefined' ? phoneNumber : '' %>" />
+				<label for="age">Age</label>
+				<input type="number" name="age" class="input-mini" value="<%= typeof(age) !== 'undefined' ? age : '' %>" />
+				<label for="genderIsFemale" class="checkbox">
+					<input type="checkbox" name="genderIsFemale" class="" checked="<%= typeof(genderIsFemale) !== 'undefined' ? genderIsFemale : '' %>" />
+					Female
+				</label>
+				<label for="notes">Notes</label>
+				<textarea name="notes" class="" rows="3"><%= typeof(notes) !== 'undefined' ? notes : '' %></textarea>
+				<button class="btn save">save changes</button>
+			</fieldset>
+		</form>
+	</section>
+</script>
